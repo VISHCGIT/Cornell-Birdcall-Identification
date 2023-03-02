@@ -23,6 +23,18 @@ from keras.optimizers import Adam
 from keras.optimizers import SGD
 st.header("Rossmann Sales Prediction App")
 
+# Called while training, to calculate F1 Score with average 'micro'
+def micro_f1(y_true, y_pred):
+    try:
+        idx = np.argmax(tf.Variable(tf.abs(y_pred)), axis=1) # getting index of maximum value in each row
+        val_pred_label = tf.Variable(tf.zeros_like(y_pred))
+        for i in range(val_pred_label.shape[0]):
+            val_pred_label = val_pred_label[i, idx[i]].assign(1)
+        micro_f1 = f1_score(y_true, val_pred_label, average='micro')
+    except ValueError:
+        pass
+    return micro_f1
+
 # load model
 tf.keras.backend.clear_session()
 input_shape = (64, 20, 1)
