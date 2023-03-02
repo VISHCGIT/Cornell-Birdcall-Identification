@@ -1,6 +1,34 @@
 
+import numpy as np
+import pandas as pd
+import gc
+import seaborn as sns
+import tensorflow as tf
+import keras
+from keras import layers
+from keras import applications
+from keras.regularizers import l2, l1
+from keras.utils.vis_utils import plot_model
+from keras.utils import np_utils, to_categorical
+from tensorflow import keras
+from keras.models import Sequential
+from keras.layers import Dense, Dropout, Activation, Flatten, Embedding
+from keras.layers import Conv2D, LSTM, MaxPooling2D, BatchNormalization
+from keras import optimizers
+from keras.optimizers import Adam
+from keras.optimizers import SGD
 
-
+# Called while training, to calculate F1 Score with average 'micro'
+def micro_f1(y_true, y_pred):
+    try:
+        idx = np.argmax(tf.Variable(tf.abs(y_pred)), axis=1) # getting index of maximum value in each row
+        val_pred_label = tf.Variable(tf.zeros_like(y_pred))
+        for i in range(val_pred_label.shape[0]):
+            val_pred_label = val_pred_label[i, idx[i]].assign(1)
+        micro_f1 = f1_score(y_true, val_pred_label, average='micro')
+    except ValueError:
+        pass
+    return micro_f1
 
 def get_cnn_model(input_shape, num_classes):
     model=Sequential()
