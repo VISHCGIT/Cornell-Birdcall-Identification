@@ -124,8 +124,10 @@ def convert_spectrogram(data_pad_seq):
 uploaded_file = st.file_uploader("Choose a file")
 st.write("before upload123")
 
-birdnames = ['aldfly', 'ameavo', 'amebit', 'amecro', 'amegfi', 'amekes', 'amepip', 'amered', 'amerob', 'amewig', 'amewoo', 'amtspa',
-       'annhum', 'astfly', 'baisan', 'baleag', 'balori', 'banswa', 'barswa', 'bawwar', 'belkin1', 'belspa2', 'bewwre', 'bkbcuc',
+birdnames = ['aldfly', 'ameavo', 'amebit', 'amecro', 'amegfi', 'amekes',
+       'amepip', 'amered', 'amerob', 'amewig', 'amewoo', 'amtspa',
+       'annhum', 'astfly', 'baisan', 'baleag', 'balori', 'banswa',
+       'barswa', 'bawwar', 'belkin1', 'belspa2', 'bewwre', 'bkbcuc',
        'bkbmag1', 'bkbwar', 'bkcchi', 'bkchum', 'bkhgro', 'bkpwar',
        'bktspa', 'blkpho', 'blugrb1', 'blujay', 'bnhcow', 'boboli',
        'bongul', 'brdowl', 'brebla', 'brespa', 'brncre', 'brnthr',
@@ -166,6 +168,7 @@ birdnames = ['aldfly', 'ameavo', 'amebit', 'amecro', 'amegfi', 'amekes', 'amepip
        'whtspa', 'whtswi', 'wilfly', 'wilsni1', 'wiltur', 'winwre3',
        'wlswar', 'wooduc', 'wooscj2', 'woothr', 'y00475', 'yebfly',
        'yebsap', 'yehbla', 'yelwar', 'yerwar', 'yetvir']
+
 st.write(len(birdnames))
 st.write(birdnames[0])
 if uploaded_file is not None:
