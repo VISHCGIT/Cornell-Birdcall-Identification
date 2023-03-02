@@ -46,7 +46,7 @@ def micro_f1(y_true, y_pred):
 # load model
 tf.keras.backend.clear_session()
 input_shape = (64, 20, 1)
-st.write("input_shape: ",input_shape)
+#st.write("input_shape: ",input_shape)
 def get_best_model(input_shape, num_classes):
     model=Sequential()
 
@@ -75,11 +75,11 @@ def get_best_model(input_shape, num_classes):
                   metrics = ['accuracy', micro_f1])
     return model
 best_model = get_best_model(input_shape, 264)
-st.write(best_model.summary())
+#st.write(best_model.summary())
 best_model.run_eagerly = True
-st.write("after run eagerly")
+#st.write("after run eagerly")
 best_model.load_weights("best_model_cnn_spect.hdf5")
-st.write("after model load");
+#st.write("after model load");
 
 def pad_seq_rawdata_on_1sample(audio_sample, seq_max_length):
     """This function takes rawdata (array 2x2) and trucate or pad based on input seq_max_length"""
@@ -155,11 +155,11 @@ birdnames = ['aldfly', 'ameavo', 'amebit', 'amecro', 'amegfi', 'amekes',
        'wlswar', 'wooduc', 'wooscj2', 'woothr', 'y00475', 'yebfly',
        'yebsap', 'yehbla', 'yelwar', 'yerwar', 'yetvir']
 
-st.write(len(birdnames))
-st.write(birdnames[0])
+#st.write(len(birdnames))
+#st.write(birdnames[0])
 st.write("As of now it is designed to predict birds in first 5 seconds of audio file")
 uploaded_file = st.file_uploader("Choose a file")
-st.write("before upload123")
+#st.write("before upload123")
 if uploaded_file is not None:
     st.write("file uploaded")
     #ipd.Audio(uploaded_file)
