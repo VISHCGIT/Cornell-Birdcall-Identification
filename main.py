@@ -26,6 +26,11 @@ import librosa
 #import librosa.display
 st.header("Rossmann Sales Prediction App")
 
+sampling_rate = 22050 #Hz
+read_file_upto = 4 #seconds 
+seq_max_length = 10000 # sequence/padding length on data (without augmentation)
+seq_max_length_aug = 2000 # sequence/padding length on data (with augmentation)
+
 # Called while training, to calculate F1 Score with average 'micro'
 def micro_f1(y_true, y_pred):
     try:
