@@ -92,8 +92,31 @@ def pad_seq_rawdata_on_1sample(audio_sample, seq_max_length):
         del rawdata_pad_seq
         gc.collect()
 
+        
+ def mel_spectrogram(rawdata, sr=22050, mels=64):
+    '''Converting to spectrogram'''
+    spectrum = librosa.feature.melspectrogram(y=rawdata, sr=sr, n_mels=mels)
+    logmel_spectrum = librosa.power_to_db(S=spectrum, ref=np.max)
+    return logmel_spectrum
+        
+def convert_spectrogram(data_pad_seq):
+    try:
+        spectrogram = []
+        for i in range(len(data_pad_seq)):
+            spectrogram.append(mel_spectrogram(data_pad_seq[i]))
+            #if i%10 == 0:
+            #    print("Processed till: ",i)
+        spectrogram = np.array(spectrogram)
+        return spectrogram
+    except:
+        print("Something went wrong",e)
+    finally:
+        del spectrogram
+        gc.collect
+        
 uploaded_file = st.file_uploader("Choose a file")
 st.write("before upload")
+
 if uploaded_file is not None:
     st.write("file uploaded")
     #ipd.Audio(uploaded_file)
