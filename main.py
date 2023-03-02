@@ -70,5 +70,5 @@ best_model = get_best_model(input_shape, 264)
 st.write(best_model.summary())
 best_model.run_eagerly = True
 st.write("after run eagerly")
-#best_model.load_weights("best_model_cnn_spect.hdf5")
+best_model.load_weights("best_model_cnn_spect.hdf5")
 st.write("after model load");
