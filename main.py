@@ -74,6 +74,24 @@ st.write("after run eagerly")
 best_model.load_weights("best_model_cnn_spect.hdf5")
 st.write("after model load");
 
+def pad_seq_rawdata_on_1sample(audio_sample, seq_max_length):
+    """This function takes rawdata (array 2x2) and trucate or pad based on input seq_max_length"""
+    try: 
+        rawdata_pad_seq = []
+        audio_sample = list(audio_sample)
+        if len(audio_sample) > seq_max_length:
+            pad_seq = audio_sample[0:seq_max_length]
+        else:
+            pad_seq = list(audio_sample + [0]*(seq_max_length-len(audio_sample)))
+        rawdata_pad_seq.append(pad_seq)
+        rawdata_pad_seq = np.array(rawdata_pad_seq)
+        return rawdata_pad_seq
+    except:
+        print("Something went wrong")
+    finally:
+        del rawdata_pad_seq
+        gc.collect()
+
 uploaded_file = st.file_uploader("Choose a file")
 st.write("before upload")
 if uploaded_file is not None:
