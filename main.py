@@ -117,7 +117,7 @@ def convert_spectrogram(data_pad_seq):
         gc.collect
         
 uploaded_file = st.file_uploader("Choose a file")
-st.write("before upload")
+st.write("before upload123")
 
 if uploaded_file is not None:
     st.write("file uploaded")
