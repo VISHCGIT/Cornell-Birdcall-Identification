@@ -119,9 +119,65 @@ def convert_spectrogram(data_pad_seq):
 uploaded_file = st.file_uploader("Choose a file")
 st.write("before upload123")
 
+birdnames = ['aldfly', 'ameavo', 'amebit', 'amecro', 'amegfi', 'amekes',
+       'amepip', 'amered', 'amerob', 'amewig', 'amewoo', 'amtspa',
+       'annhum', 'astfly', 'baisan', 'baleag', 'balori', 'banswa',
+       'barswa', 'bawwar', 'belkin1', 'belspa2', 'bewwre', 'bkbcuc',
+       'bkbmag1', 'bkbwar', 'bkcchi', 'bkchum', 'bkhgro', 'bkpwar',
+       'bktspa', 'blkpho', 'blugrb1', 'blujay', 'bnhcow', 'boboli',
+       'bongul', 'brdowl', 'brebla', 'brespa', 'brncre', 'brnthr',
+       'brthum', 'brwhaw', 'btbwar', 'btnwar', 'btywar', 'buffle',
+       'buggna', 'buhvir', 'bulori', 'bushti', 'buwtea', 'buwwar',
+       'cacwre', 'calgul', 'calqua', 'camwar', 'cangoo', 'canwar',
+       'canwre', 'carwre', 'casfin', 'caster1', 'casvir', 'cedwax',
+       'chispa', 'chiswi', 'chswar', 'chukar', 'clanut', 'cliswa',
+       'comgol', 'comgra', 'comloo', 'commer', 'comnig', 'comrav',
+       'comred', 'comter', 'comyel', 'coohaw', 'coshum', 'cowscj1',
+       'daejun', 'doccor', 'dowwoo', 'dusfly', 'eargre', 'easblu',
+       'easkin', 'easmea', 'easpho', 'eastow', 'eawpew', 'eucdov',
+       'eursta', 'evegro', 'fiespa', 'fiscro', 'foxspa', 'gadwal',
+       'gcrfin', 'gnttow', 'gnwtea', 'gockin', 'gocspa', 'goleag',
+       'grbher3', 'grcfly', 'greegr', 'greroa', 'greyel', 'grhowl',
+       'grnher', 'grtgra', 'grycat', 'gryfly', 'haiwoo', 'hamfly',
+       'hergul', 'herthr', 'hoomer', 'hoowar', 'horgre', 'horlar',
+       'houfin', 'houspa', 'houwre', 'indbun', 'juntit1', 'killde',
+       'labwoo', 'larspa', 'lazbun', 'leabit', 'leafly', 'leasan',
+       'lecthr', 'lesgol', 'lesnig', 'lesyel', 'lewwoo', 'linspa',
+       'lobcur', 'lobdow', 'logshr', 'lotduc', 'louwat', 'macwar',
+       'magwar', 'mallar3', 'marwre', 'merlin', 'moublu', 'mouchi',
+       'moudov', 'norcar', 'norfli', 'norhar2', 'normoc', 'norpar',
+       'norpin', 'norsho', 'norwat', 'nrwswa', 'nutwoo', 'olsfly',
+       'orcwar', 'osprey', 'ovenbi1', 'palwar', 'pasfly', 'pecsan',
+       'perfal', 'phaino', 'pibgre', 'pilwoo', 'pingro', 'pinjay',
+       'pinsis', 'pinwar', 'plsvir', 'prawar', 'purfin', 'pygnut',
+       'rebmer', 'rebnut', 'rebsap', 'rebwoo', 'redcro', 'redhea',
+       'reevir1', 'renpha', 'reshaw', 'rethaw', 'rewbla', 'ribgul',
+       'rinduc', 'robgro', 'rocpig', 'rocwre', 'rthhum', 'ruckin',
+       'rudduc', 'rufgro', 'rufhum', 'rusbla', 'sagspa1', 'sagthr',
+       'savspa', 'saypho', 'scatan', 'scoori', 'semplo', 'semsan',
+       'sheowl', 'shshaw', 'snobun', 'snogoo', 'solsan', 'sonspa', 'sora',
+       'sposan', 'spotow', 'stejay', 'swahaw', 'swaspa', 'swathr',
+       'treswa', 'truswa', 'tuftit', 'tunswa', 'veery', 'vesspa',
+       'vigswa', 'warvir', 'wesblu', 'wesgre', 'weskin', 'wesmea',
+       'wessan', 'westan', 'wewpew', 'whbnut', 'whcspa', 'whfibi',
+       'whtspa', 'whtswi', 'wilfly', 'wilsni1', 'wiltur', 'winwre3',
+       'wlswar', 'wooduc', 'wooscj2', 'woothr', 'y00475', 'yebfly',
+       'yebsap', 'yehbla', 'yelwar', 'yerwar', 'yetvir']
+st.write(len(birdnames))
+st.write(birdnames[0])
 if uploaded_file is not None:
     st.write("file uploaded")
     #ipd.Audio(uploaded_file)
     start_sec = 0
     samples, sample_rate = librosa.load(uploaded_file, offset = start_sec, duration = 5)
+    pred_labels = []
+    for i in range (0, len(samples), 10000):
+        samples_pad_seq = pad_seq_rawdata_on_1sample(samples[i: i+10000], 10000)
+        samples_spectrogram = convert_spectrogram(samples_pad_seq)
+        pred = best_model.predict(samples_spectrogram, verbose = 0)
+        pred_labels.append(np.argmax(pred))
+    pred_birds = set()
+    for ele in pred_labels:
+        pred_birds.add(birdnames[ele])
+
     st.write(len(samples))
