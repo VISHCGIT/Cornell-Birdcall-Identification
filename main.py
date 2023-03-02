@@ -24,7 +24,7 @@ from keras.optimizers import Adam
 from keras.optimizers import SGD
 import librosa
 #import librosa.display
-st.header("Rossmann Sales Prediction App")
+st.header("Cornell Birdcall Identification Application")
 
 sampling_rate = 22050 #Hz
 read_file_upto = 4 #seconds 
