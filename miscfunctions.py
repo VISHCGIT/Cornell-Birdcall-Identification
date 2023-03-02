@@ -30,7 +30,7 @@ def micro_f1(y_true, y_pred):
         pass
     return micro_f1
 
-def get_cnn_model(input_shape, num_classes):
+def get_best_model(input_shape, num_classes):
     model=Sequential()
 
     model.add(Conv2D(32, (3,3),activation='relu',input_shape=input_shape))
