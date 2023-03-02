@@ -6,10 +6,11 @@ import pandas as pd
 import numpy as np
 import re
 import datetime
+import tensorflow as tf
 st.header("Rossmann Sales Prediction App")
 
 # load model
-#tf.keras.backend.clear_session()
+tf.keras.backend.clear_session()
 input_shape = (64, 20, 1)
 st.write("input_shape: ",input_shape)
 #best_model = get_best_model(input_shape, 264)
