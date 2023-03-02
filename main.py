@@ -158,7 +158,7 @@ birdnames = ['aldfly', 'ameavo', 'amebit', 'amecro', 'amegfi', 'amekes',
 #st.write(len(birdnames))
 #st.write(birdnames[0])
 st.write("As of now it is designed to predict birds in first 5 seconds of audio file")
-uploaded_file = st.file_uploader("Choose a file")
+uploaded_file = st.file_uploader("Choose a an audio file (mp3):")
 #st.write("before upload123")
 if uploaded_file is not None:
     st.write("file uploaded")
