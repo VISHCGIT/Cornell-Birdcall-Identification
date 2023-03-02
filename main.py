@@ -75,5 +75,7 @@ best_model.load_weights("best_model_cnn_spect.hdf5")
 st.write("after model load");
 
 uploaded_file = st.file_uploader("Choose a file")
+st.write("before upload")
 if uploaded_file is not None:
+    st.write("file uploaded")
     #ipd.Audio(uploaded_file)
