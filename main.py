@@ -93,7 +93,7 @@ def pad_seq_rawdata_on_1sample(audio_sample, seq_max_length):
         gc.collect()
 
         
- def mel_spectrogram(rawdata, sr=22050, mels=64):
+def mel_spectrogram(rawdata, sr=22050, mels=64):
     '''Converting to spectrogram'''
     spectrum = librosa.feature.melspectrogram(y=rawdata, sr=sr, n_mels=mels)
     logmel_spectrum = librosa.power_to_db(S=spectrum, ref=np.max)
