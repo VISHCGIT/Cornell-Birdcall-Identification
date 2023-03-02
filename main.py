@@ -109,8 +109,6 @@ def convert_spectrogram(data_pad_seq):
     spectrogram = np.array(spectrogram)
     return spectrogram
         
-uploaded_file = st.file_uploader("Choose a file")
-st.write("before upload123")
 
 birdnames = ['aldfly', 'ameavo', 'amebit', 'amecro', 'amegfi', 'amekes',
        'amepip', 'amered', 'amerob', 'amewig', 'amewoo', 'amtspa',
@@ -159,6 +157,9 @@ birdnames = ['aldfly', 'ameavo', 'amebit', 'amecro', 'amegfi', 'amekes',
 
 st.write(len(birdnames))
 st.write(birdnames[0])
+
+uploaded_file = st.file_uploader("Choose a file")
+st.write("before upload123")
 if uploaded_file is not None:
     st.write("file uploaded")
     #ipd.Audio(uploaded_file)
