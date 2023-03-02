@@ -1,4 +1,5 @@
 import streamlit as st
+import IPython.display as ipd 
 import pandas as pd
 #from sklearn.model_selection import train_test_split
 #from sklearn.preprocessing import  LabelEncoder
@@ -72,3 +73,7 @@ best_model.run_eagerly = True
 st.write("after run eagerly")
 best_model.load_weights("best_model_cnn_spect.hdf5")
 st.write("after model load");
+
+uploaded_file = st.file_uploader("Choose a file")
+if uploaded_file is not None:
+    ipd.Audio(uploaded_file)
