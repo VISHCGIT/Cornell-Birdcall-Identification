@@ -123,5 +123,5 @@ if uploaded_file is not None:
     st.write("file uploaded")
     #ipd.Audio(uploaded_file)
     start_sec = 0
-    #samples, sample_rate = librosa.load(uploaded_file, offset = start_sec, duration = 5)
-    #st.write(len(samples))
+    samples, sample_rate = librosa.load(uploaded_file, offset = start_sec, duration = 5)
+    st.write(len(samples))
